@@ -1,13 +1,12 @@
 import React from 'react'
 import {render} from 'react-dom'
 import App from './app/components/App'
-
-const style = {
-  backgroundColor: '#BD4200'
-}
+// import style from './app/styles/main.css'
 
 const Root = () => (
-  <App />
+  <div className='body'>
+    <App />
+  </div>
 )
 
 render(

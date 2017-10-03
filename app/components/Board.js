@@ -4,7 +4,8 @@ class Board extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      value: ''
+      value: '',
+      activeBoardId: ''
     }
     this.handleRename = this.handleRename.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -16,10 +17,11 @@ class Board extends React.Component {
 
   handleRename (e) {
     console.log('e.target.value = ', e.target.value, ' boardName = ', this.props.board.boardName)
-    this.refs.inp_rename.style.display = 'block'
+    this.refs.inp_rename.style.display = 'inline-block'
     this.refs.btn_rename.style.display = 'none'
     this.refs.btn_Ok.style.display = 'inline-block'
     this.refs.btn_Cancel.style.display = 'inline-block'
+    this.refs.btn_Delete.style.display = 'none'
   }
 
   handleChange (e) {
@@ -43,19 +45,21 @@ class Board extends React.Component {
   handleDisplayTaskList (e) {
     if (e.target.tagName === 'DIV') {
       console.log('$$$$$$$$$$ Inside handleDisplayTaskList $$$$$$$$$$$$$$ ')
+      this.setState({activeBoardId: this.props.board.boardId})
       this.props.displayTaskList(this.props.board.boardId)
     }
   }
 
   handleDelete (e) {
-    this.props.deleteBoard(this.props.board.boardId)
+    this.props.deleteBoard(this.props.board.boardId, this.state.activeBoardId)
   }
 
   hide () {
     this.refs.inp_rename.style.display = 'none'
-    this.refs.btn_rename.style.display = 'block'
+    this.refs.btn_rename.style.display = 'inline-block'
     this.refs.btn_Ok.style.display = 'none'
     this.refs.btn_Cancel.style.display = 'none'
+    this.refs.btn_Delete.style.display = 'inline-block'
   }
 
   render (props) {
@@ -66,7 +70,7 @@ class Board extends React.Component {
         <input type='button' className='floating-button' ref='btn_rename' value='Rename' style={{display: 'inline-block'}} onClick={this.handleRename} />
         <input type='button' className='floating-button' ref='btn_Ok' value='Ok' style={{display: 'none'}} onClick={this.handleOk} />
         <input type='button' className='floating-button' ref='btn_Cancel' value='Cancel' style={{display: 'none'}} onClick={this.handleCancel} />
-        <input type='button' className='floating-button' ref='Delete' value='Delete' style={{display: 'inline-block'}} onClick={this.handleDelete} />
+        <input type='button' className='floating-button' ref='btn_Delete' value='Delete' style={{display: 'inline-block'}} onClick={this.handleDelete} />
       </div>
     )
   }

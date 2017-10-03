@@ -24,8 +24,6 @@ class BoardList extends React.Component {
   }
 
   render (props) {
-    console.log('<BoardList> this.props.boards = ', this.props.boards)
-    // console.log('Object keys = ', Object.keys(this.props.data.boards))
     let boards = this.props.boards
     let rows = []
     for (let board in boards) {

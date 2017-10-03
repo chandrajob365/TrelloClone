@@ -1,11 +1,17 @@
 import React from 'react'
-//import style from '../styles/main.css'
-
+import Task from './Task'
 class TaskPannel extends React.Component {
   render (props) {
+    let rows = []
+    this.props.activeBoardTasks.forEach(task => {
+      rows.push(
+        <Task key={task.taskId}
+          task={task} />
+      )
+    })
     return (
       <div className='content'>
-        <h1> Task Pannel </h1>
+        {rows}
       </div>
     )
   }

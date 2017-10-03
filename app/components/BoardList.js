@@ -36,9 +36,9 @@ class BoardList extends React.Component {
       )
     }
     return (
-      <div>
+      <div className='board-pannel'>
         {rows}
-        <div className='nav-item'>
+        <div className='create-board'>
           <input type='text' ref='boardName' value={this.state.boardName} placeholder='Add new Board' onChange={this.handleChange} />
           <input type='button' value='Create' onClick={this.handleCreate} />
         </div>

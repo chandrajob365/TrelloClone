@@ -1,6 +1,7 @@
 import React from 'react'
 import BoardPannel from './BoardPannel'
 import TaskPannel from './TaskPannel'
+import HeaderPannel from './HeaderPannel'
 import data from '../../data.js'
 
 class App extends React.Component {
@@ -92,7 +93,7 @@ class App extends React.Component {
 
   render (props) {
     return (
-      <div className='app'>
+      <div className='app-container'>
         <BoardPannel
           boards={this.state.boards}
           addBoard={this.addBoard}

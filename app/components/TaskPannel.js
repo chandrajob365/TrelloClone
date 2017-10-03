@@ -10,7 +10,7 @@ class TaskPannel extends React.Component {
       )
     })
     return (
-      <div className='content'>
+      <div className='task-pannel-container'>
         {rows}
       </div>
     )

@@ -64,7 +64,7 @@ class Board extends React.Component {
 
   render (props) {
     return (
-      <div className='nav-item' onClick={this.handleDisplayTaskList}>
+      <div className='board' onClick={this.handleDisplayTaskList}>
         <span style={{display: 'block'}}>{this.props.board.boardName}</span>
         <input type='text' ref='inp_rename' value={this.value} style={{display: 'none'}} onChange={this.handleChange} />
         <input type='button' className='floating-button' ref='btn_rename' value='Rename' style={{display: 'inline-block'}} onClick={this.handleRename} />

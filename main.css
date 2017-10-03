@@ -1,76 +1,97 @@
-.body {
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.header-container {
+  color: #fff;
+  background-color: #5995DA;
+  padding: 20px 0;
   display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+  justify-content: center;
 }
 
-.app {
+.header {
+  width: 900px;
   display: flex;
-  flex: 1 ;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.nav {
-  flex: 0 0 18em;
-  order: -1;
-  border: 2px solid black;
-  margin: 3px;
-  padding: 1px;
-  height: 90vh;
-  overflow-y: scroll;
+.links {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.nav-item {
-  background-color: grey;
-  height: 5em;
+.login {
+  margin-left: 20px;
+}
+
+.signup {
+  margin-left: auto;
+}
+
+.app-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.board-pannel-container {
+  display: flex;
+  flex:1;
   border: 1px solid black;
-  margin:2px;
+  background-color: #D6E9FE;
+  height: 80vh;
 }
 
-.content {
-  flex: 1;
-  border: 2px solid black;
-  margin: 3px;
-  height: 90vh;
+.board-pannel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
   overflow-y: scroll;
 }
 
-.task {
-  flex: 0 0 10em;
-  border: 2px solid black;
+.board {
+  border: 1px solid #fff;
+  height: 80px;
+}
+
+.create-board {
+  height: 80px;
+}
+
+.task-pannel-container {
+  display: flex;
+  padding: 10px 10px;
+  margin: 0 0 0 2px;
+  border: 1px solid black;
+  flex: 2;
+  flex-flow: wrap;
+}
+
+.task-item {
+  margin: 1px;
+  border: 1px solid black;
   background-color: grey;
-  margin: 3px;
-  padding: 1px;
-  height: 10vh;
-  width: 20vh;
-  overflow-y: scroll;
-flex-flow: column;
+  width: 150px;
+  height: 150px;
 }
 
 .task-header {
   height: 25%;
   width: 100%;
   border-bottom: 1px solid black;
-  padding: 1px;
-
 }
 
 .task-content {
   height: 50%;
   width: 100%;
   border-bottom: 1px solid black;
-  padding: 1px;
-  background-color: white;
 }
 
 .task-footer {
   height: 25%;
   width: 100%;
-  padding: 1px;
-}
-
-.floating-button {
-    width: 50px;
-    height: 20px;
-    margin: 2px;
-    border: 1px solid #73AD21;
 }

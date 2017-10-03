@@ -5,7 +5,7 @@ class BoardPannel extends React.Component {
   render () {
     console.log('<BoardPannel> this.props = ', this.props)
     return (
-      <div className='nav'>
+      <div className='board-pannel-container'>
         <BoardList boards={this.props.boards}
           addBoard={this.props.addBoard}
           updateBoardName={this.props.updateBoardName}

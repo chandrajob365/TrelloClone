@@ -12,6 +12,7 @@ class BoardPannel extends React.Component {
     this.addBoard = this.addBoard.bind(this)
     this.updateBoardName = this.updateBoardName.bind(this)
     this.displayTaskList = this.displayTaskList.bind(this)
+    this.deleteBoard = this.deleteBoard.bind(this)
   }
 
   addBoard (boardName) {
@@ -52,6 +53,22 @@ class BoardPannel extends React.Component {
     )
   }
 
+  deleteBoard (boardId) {
+    console.log('<BoardPannel, deleteBoard> boardId = ', boardId)
+    let boardsCopy = Object.assign({}, this.state.boards)
+    console.log('boardsCopy = ', boardsCopy)
+    for (let boardKey in boardsCopy) {
+      if (boardKey === boardId) {
+        delete boardsCopy[boardId]
+        break
+      }
+    }
+    this.setState({
+      boards: boardsCopy,
+      currentBoardIndex: --this.state.currentBoardIndex
+    })
+  }
+
   displayTaskList (boardId) {
     console.log('------------ Inside displayTaskList ------------------ boardId = ', boardId)
   }
@@ -63,7 +80,8 @@ class BoardPannel extends React.Component {
         <BoardList boards={this.state.boards}
           addBoard={this.addBoard}
           updateBoardName={this.updateBoardName}
-          displayTaskList={this.displayTaskList} />
+          displayTaskList={this.displayTaskList}
+          deleteBoard={this.deleteBoard} />
       </div>
     )
   }

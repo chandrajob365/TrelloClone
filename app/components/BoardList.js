@@ -33,7 +33,8 @@ class BoardList extends React.Component {
         <Board key={boards[board].boardId}
           board={boards[board]}
           updateBoardName={this.props.updateBoardName}
-          displayTaskList={this.props.displayTaskList} />
+          displayTaskList={this.props.displayTaskList}
+          deleteBoard={this.props.deleteBoard} />
       )
     }
     return (

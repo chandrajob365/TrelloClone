@@ -95,3 +95,10 @@
   height: 25%;
   width: 100%;
 }
+
+.footer {
+  display: flex;
+  background-color: #5995DA;
+  height: 50px;
+  flex: 1;
+}

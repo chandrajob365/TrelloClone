@@ -4,8 +4,7 @@ class Board extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      value: '',
-      activeBoardId: ''
+      value: ''
     }
     this.handleRename = this.handleRename.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -44,14 +43,12 @@ class Board extends React.Component {
 
   handleDisplayTaskList (e) {
     if (e.target.tagName === 'DIV') {
-      console.log('$$$$$$$$$$ Inside handleDisplayTaskList $$$$$$$$$$$$$$ ')
-      this.setState({activeBoardId: this.props.board.boardId})
       this.props.displayTaskList(this.props.board.boardId)
     }
   }
 
   handleDelete (e) {
-    this.props.deleteBoard(this.props.board.boardId, this.state.activeBoardId)
+    this.props.deleteBoard(this.props.board.boardId)
   }
 
   hide () {

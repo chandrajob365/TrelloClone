@@ -1,25 +1,8 @@
 import React from 'react'
 import Task from './Task'
+import CreateTask from './CreateTask'
+
 class TaskPannel extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      value: ''
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleCreate = this.handleCreate.bind(this)
-  }
-
-  handleChange (e) {
-    this.setState({value: e.target.value})
-  }
-
-  handleCreate (e) {
-    if (this.state.value.length > 0) {
-      this.props.createTask(this.state.value)
-    }
-  }
-
   render (props) {
     console.log('<TaskPannel, render >, props = ', this.props)
     let rows = []
@@ -33,10 +16,7 @@ class TaskPannel extends React.Component {
     return (
       <div className='task-pannel-container'>
         {rows}
-        <div className='create-task'>
-          <input type='text' ref='taskName' placeholder='Create new Task' onChange={this.handleChange} />
-          <input type='button' value='Create' onClick={this.handleCreate}/>
-        </div>
+        <CreateTask createTask={this.props.createTask} />
       </div>
     )
   }

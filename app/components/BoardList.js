@@ -40,7 +40,7 @@ class BoardList extends React.Component {
         {rows}
         <div className='create-board'>
           <input type='text' ref='boardName' value={this.state.boardName} placeholder='Add new Board' onChange={this.handleChange} />
-          <input type='button' value='Create' onClick={this.handleCreate} />
+          <input className='button-OK' type='button' value='Create' onClick={this.handleCreate} />
         </div>
       </div>
     )

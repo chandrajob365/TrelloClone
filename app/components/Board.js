@@ -64,10 +64,10 @@ class Board extends React.Component {
       <div className='board' onClick={this.handleDisplayTaskList}>
         <span style={{display: 'block'}}>{this.props.board.boardName}</span>
         <input type='text' ref='inp_rename' value={this.value} style={{display: 'none'}} onChange={this.handleChange} />
-        <input type='button' className='floating-button' ref='btn_rename' value='Rename' style={{display: 'inline-block'}} onClick={this.handleRename} />
-        <input type='button' className='floating-button' ref='btn_Ok' value='Ok' style={{display: 'none'}} onClick={this.handleOk} />
-        <input type='button' className='floating-button' ref='btn_Cancel' value='Cancel' style={{display: 'none'}} onClick={this.handleCancel} />
-        <input type='button' className='floating-button' ref='btn_Delete' value='Delete' style={{display: 'inline-block'}} onClick={this.handleDelete} />
+        <input type='button' className='button-OK' ref='btn_rename' value='Rename' style={{display: 'inline-block'}} onClick={this.handleRename} />
+        <input type='button' className='button-OK' ref='btn_Ok' value='Ok' style={{display: 'none'}} onClick={this.handleOk} />
+        <input type='button' className='button-Cancel' ref='btn_Cancel' value='Cancel' style={{display: 'none'}} onClick={this.handleCancel} />
+        <input type='button' className='button-Cancel' ref='btn_Delete' value='Delete' style={{display: 'inline-block'}} onClick={this.handleDelete} />
       </div>
     )
   }

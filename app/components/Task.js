@@ -2,6 +2,7 @@ import React from 'react'
 
 class Task extends React.Component {
   render (props) {
+    console.log('<Task.js render> props = ', this.props)
     return (
       <div className='task-item'>
         <div className='task-header'>{this.props.task.taskName}</div>

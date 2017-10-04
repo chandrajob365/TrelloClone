@@ -47,7 +47,9 @@ class App extends React.Component {
             desc: ''
           }
         },
-        currentBoardIndex: ++this.state.currentBoardIndex
+        currentBoardIndex: ++this.state.currentBoardIndex,
+        activeBoardId: boardId,
+        activeBoardTasks: []
       }
     )
   }
@@ -124,8 +126,7 @@ class App extends React.Component {
           addBoard={this.addBoard}
           updateBoardName={this.updateBoardName}
           displayTaskList={this.displayTaskList}
-          deleteBoard={this.deleteBoard}
-          tasks={this.state.tasks} />
+          deleteBoard={this.deleteBoard} />
         <TaskPannel
           activeBoardTasks={this.state.activeBoardTasks}
           createTask={this.createTask} />

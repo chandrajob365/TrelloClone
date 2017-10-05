@@ -42,6 +42,7 @@ class TaskHeader extends React.Component {
           style={{display: 'none'}}
           onChange={this.handleChange}
           onBlur={this.handleBlur} />
+        <i className='fa fa-trash-o' onClick={this.props.deleteTask} />
       </div>
     )
   }

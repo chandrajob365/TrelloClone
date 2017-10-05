@@ -8,6 +8,7 @@ class Task extends React.Component {
     super(props)
     this.createCard = this.createCard.bind(this)
     this.updateTaskName = this.updateTaskName.bind(this)
+    this.deleteTask = this.deleteTask.bind(this)
   }
 
   createCard (cardName) {
@@ -16,6 +17,10 @@ class Task extends React.Component {
 
   updateTaskName (taskName) {
     this.props.updateTaskName(this.props.task.taskId, taskName)
+  }
+
+  deleteTask () {
+    this.props.deleteTask(this.props.task.taskId)
   }
 
   render () {
@@ -30,7 +35,8 @@ class Task extends React.Component {
       <div className='task-item'>
         <TaskHeader
           taskName={this.props.task.taskName}
-          updateTaskName={this.updateTaskName} />
+          updateTaskName={this.updateTaskName}
+          deleteTask={this.deleteTask} />
         <div className='task-content'>
           {cards}
         </div>

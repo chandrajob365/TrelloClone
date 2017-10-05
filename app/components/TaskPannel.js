@@ -8,13 +8,16 @@ class TaskPannel extends React.Component {
     let rows = []
     this.props.activeBoardTasks.forEach(taskId => {
       console.log('<TaskPannel, render > taskId = ', taskId)
-      rows.push(
-        <Task key={taskId}
-          task={this.props.tasks[taskId]}
-          cards={this.props.cards}
-          createCard={this.props.createCard}
-          updateTaskName={this.props.updateTaskName} />
-      )
+      if (this.props.tasks[taskId]) {
+        rows.push(
+          <Task key={taskId}
+            task={this.props.tasks[taskId]}
+            cards={this.props.cards}
+            createCard={this.props.createCard}
+            updateTaskName={this.props.updateTaskName}
+            deleteTask={this.props.deleteTask} />
+        )
+      }
     })
     return (
       <div className='task-pannel-container'>

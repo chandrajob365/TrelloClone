@@ -12,23 +12,21 @@ class App extends React.Component {
       tasks: data.tasks || {},
       currentTaskIndex: data.currentTaskIndex || 0,
       activeBoardId: '',
-      activeBoardTasks: []
+      activeBoardTasks: [],
+      cards: data.cards || {},
+      currentCardIndex: data.currentCardIndex || 0
     }
     this.displayTaskList = this.displayTaskList.bind(this)
     this.addBoard = this.addBoard.bind(this)
     this.updateBoardName = this.updateBoardName.bind(this)
     this.deleteBoard = this.deleteBoard.bind(this)
     this.createTask = this.createTask.bind(this)
+    this.createCard = this.createCard.bind(this)
   }
 
   displayTaskList (boardId) {
-    let boardTasksList = this.state.boards[boardId].taskList
-    let activeBoardTasks = []
-    boardTasksList.forEach(taskId => {
-      activeBoardTasks.push(this.state.tasks[taskId])
-    })
     this.setState({
-      activeBoardTasks: activeBoardTasks,
+      activeBoardTasks: this.state.boards[boardId].taskList,
       activeBoardId: boardId
     })
   }
@@ -90,13 +88,15 @@ class App extends React.Component {
 
   createTask (taskName) {
     let boardId = this.state.activeBoardId
+    console.log('<App.js, createTask > boardId = ', boardId)
     let taskId = this.state.currentTaskIndex + taskName
     let newTask = {
       taskId: taskId,
       taskName: taskName,
       taskDesc: '',
       taskDueDate: '',
-      taskCreationDate: new Date().toISOString()
+      taskCreationDate: new Date().toISOString(),
+      cards: []
     }
     this.setState(
       {
@@ -105,7 +105,7 @@ class App extends React.Component {
           ...this.state.boards,
           [boardId]: {
             ...this.state.boards[boardId],
-            taskList: this.state.boards[boardId].taskList.concat(taskId) // check if task is undefined ternary operator
+            taskList: this.state.boards[boardId].taskList.concat(taskId)
           }
         },
         tasks: {
@@ -113,7 +113,35 @@ class App extends React.Component {
           [taskId]: newTask
         },
         currentTaskIndex: ++this.state.currentTaskIndex,
-        activeBoardTasks: this.state.activeBoardTasks.concat(newTask)
+        activeBoardTasks: this.state.boards[boardId].taskList.concat(taskId)
+      }
+    )
+  }
+
+  createCard (cardName, taskId) {
+    let cardId = this.state.currentCardIndex + cardName
+    let newCard = {
+      cardId: cardId,
+      cardName: cardName,
+      cardDesc: '',
+      cardDueDate: '',
+      cardCreationDate: new Date().toISOString()
+    }
+    this.setState(
+      {
+        ...this.state,
+        tasks: {
+          ...this.state.tasks,
+          [taskId]: {
+            ...this.state.tasks[taskId],
+            cards: this.state.tasks[taskId].cards.concat(cardId)
+          }
+        },
+        cards: {
+          ...this.state.cards,
+          [cardId]: newCard
+        },
+        currentCardIndex: ++this.state.currentCardIndex
       }
     )
   }
@@ -129,7 +157,10 @@ class App extends React.Component {
           deleteBoard={this.deleteBoard} />
         <TaskPannel
           activeBoardTasks={this.state.activeBoardTasks}
-          createTask={this.createTask} />
+          tasks={this.state.tasks}
+          createTask={this.createTask}
+          cards={this.state.cards}
+          createCard={this.createCard} />
       </div>
     )
   }

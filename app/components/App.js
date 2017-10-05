@@ -29,6 +29,7 @@ class App extends React.Component {
     this.deleteTask = this.deleteTask.bind(this)
     this.toggleCardModal = this.toggleCardModal.bind(this)
     this.updateCard = this.updateCard.bind(this)
+    this.handleDeleteCard = this.handleDeleteCard.bind(this)
   }
 
   displayTaskList (boardId) {
@@ -200,6 +201,19 @@ class App extends React.Component {
       }
     })
   }
+
+  handleDeleteCard (cardId) {
+    console.log('<App.js, handleDeleteCard > cardId = ', cardId)
+    let cardsCopy = Object.assign({}, this.state.cards)
+    delete cardsCopy[cardId]
+    this.setState(
+      {
+        ...this.state,
+        cards: cardsCopy
+      }
+    )
+  }
+
   render (props) {
     let modal = null
     if (this.state.isOpen) {
@@ -227,7 +241,8 @@ class App extends React.Component {
           deleteTask={this.deleteTask}
           cards={this.state.cards}
           createCard={this.createCard}
-          toggleCardModal={this.toggleCardModal} />
+          toggleCardModal={this.toggleCardModal}
+          handleDeleteCard={this.handleDeleteCard} />
         {modal}
       </div>
     )

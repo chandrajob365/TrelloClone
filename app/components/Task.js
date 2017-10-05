@@ -31,11 +31,14 @@ class Task extends React.Component {
     console.log('<Task.js render> props = ', this.props)
     let cards = []
     this.props.task.cards.forEach(cardId => {
-      cards.push(
-        <Card key={cardId}
-          card={this.props.cards[cardId]}
-          displayCardModal={this.displayCardModal} />
-      )
+      if (this.props.cards[cardId]) {
+        cards.push(
+          <Card key={cardId}
+            card={this.props.cards[cardId]}
+            displayCardModal={this.displayCardModal}
+            handleDeleteCard={this.props.handleDeleteCard} />
+        )
+      }
     })
     return (
       <div className='task-item'>

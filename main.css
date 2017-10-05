@@ -130,10 +130,12 @@
 
 /* Card start*/
   .card {
+    display: flex;
     padding: 2px;
     border: 1px solid black;
     border-radius: 4px;
     color: black;
+    justify-content: space-between
   }
 /* Card End*/
 
@@ -235,7 +237,7 @@ i:hover {
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 14px;
     font-weight: bold;
 }
 

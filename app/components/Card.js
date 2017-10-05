@@ -4,6 +4,12 @@ class Card extends React.Component {
   constructor (props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
+  }
+
+  handleDelete (e) {
+    this.props.handleDeleteCard(this.props.card.cardId)
+    e.stopPropagation()
   }
 
   handleClick () {
@@ -13,7 +19,10 @@ class Card extends React.Component {
   render (props) {
     return (
       <div onClick={this.handleClick}>
-        <div className='card'> {this.props.card.cardName} </div>
+        <div className='card'>
+          <div className='card-name'>{this.props.card.cardName}</div>
+          <div className='close' onClick={this.handleDelete}>&times;</div>
+        </div>
       </div>
     )
   }

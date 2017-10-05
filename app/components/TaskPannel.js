@@ -15,7 +15,8 @@ class TaskPannel extends React.Component {
             cards={this.props.cards}
             createCard={this.props.createCard}
             updateTaskName={this.props.updateTaskName}
-            deleteTask={this.props.deleteTask} />
+            deleteTask={this.props.deleteTask}
+            toggleCardModal={this.props.toggleCardModal} />
         )
       }
     })

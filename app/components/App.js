@@ -2,6 +2,7 @@ import React from 'react'
 import BoardPannel from './BoardPannel'
 import TaskPannel from './TaskPannel'
 import data from '../../data.js'
+import CardModal from './CardModal'
 
 class App extends React.Component {
   constructor (props) {
@@ -14,7 +15,9 @@ class App extends React.Component {
       activeBoardId: '',
       activeBoardTasks: [],
       cards: data.cards || {},
-      currentCardIndex: data.currentCardIndex || 0
+      currentCardIndex: data.currentCardIndex || 0,
+      isOpen: false,
+      openedCardDetail: {cardId: '', taskName: ''}
     }
     this.displayTaskList = this.displayTaskList.bind(this)
     this.addBoard = this.addBoard.bind(this)
@@ -24,6 +27,8 @@ class App extends React.Component {
     this.createCard = this.createCard.bind(this)
     this.updateTaskName = this.updateTaskName.bind(this)
     this.deleteTask = this.deleteTask.bind(this)
+    this.toggleCardModal = this.toggleCardModal.bind(this)
+    this.updateCard = this.updateCard.bind(this)
   }
 
   displayTaskList (boardId) {
@@ -92,7 +97,7 @@ class App extends React.Component {
       taskName: taskName,
       taskDesc: '',
       taskDueDate: '',
-      taskCreationDate: new Date().toISOString(),
+      taskCreationDate: new Date().toLocaleDateString(),
       cards: []
     }
     this.setState(
@@ -149,7 +154,7 @@ class App extends React.Component {
       cardName: cardName,
       cardDesc: '',
       cardDueDate: '',
-      cardCreationDate: new Date().toISOString()
+      cardCreationDate: new Date().toLocaleDateString() // Format -> '12/21/2017'
     }
     this.setState(
       {
@@ -170,7 +175,42 @@ class App extends React.Component {
     )
   }
 
+  toggleCardModal (cardId, taskName) {
+    console.log('<App.js, toggleCardModal> cardId = ', cardId)
+    this.setState({
+      isOpen: !this.state.isOpen,
+      openedCardDetail: {
+        cardId: cardId || '',
+        taskName: taskName || ''
+      }
+    })
+  }
+
+  updateCard (cardId, cardDesc, cardDueDate) {
+    console.log('<App.js, updateCard> cardId = ', cardId, '  cardDes = ', cardDesc, '  cardDueDate = ', cardDueDate)
+    this.setState({
+      ...this.state,
+      cards: {
+        ...this.state.cards,
+        [cardId]: {
+          ...this.state.cards[cardId],
+          cardDesc: cardDesc,
+          cardDueDate: cardDueDate
+        }
+      }
+    })
+  }
   render (props) {
+    let modal = null
+    if (this.state.isOpen) {
+      modal = <CardModal isOpen={this.state.isOpen}
+        cards={this.state.cards}
+        openedCardDetail={this.state.openedCardDetail}
+        onClose={this.toggleCardModal}
+        updateCard={this.updateCard} />
+    } else {
+      modal = null
+    }
     return (
       <div className='app-container'>
         <BoardPannel
@@ -186,7 +226,9 @@ class App extends React.Component {
           updateTaskName={this.updateTaskName}
           deleteTask={this.deleteTask}
           cards={this.state.cards}
-          createCard={this.createCard} />
+          createCard={this.createCard}
+          toggleCardModal={this.toggleCardModal} />
+        {modal}
       </div>
     )
   }

@@ -22,6 +22,7 @@ class App extends React.Component {
     this.deleteBoard = this.deleteBoard.bind(this)
     this.createTask = this.createTask.bind(this)
     this.createCard = this.createCard.bind(this)
+    this.updateTaskName = this.updateTaskName.bind(this)
   }
 
   displayTaskList (boardId) {
@@ -118,6 +119,22 @@ class App extends React.Component {
     )
   }
 
+  updateTaskName (taskId, taskName) {
+    console.log('<App.js, updateTaskName> taskId = ', taskId, '  taskName = ', taskName)
+    this.setState(
+      {
+        ...this.state,
+        tasks: {
+          ...this.state.tasks,
+          [taskId]: {
+            ...this.state.tasks[taskId],
+            taskName: taskName
+          }
+        }
+      }
+    )
+  }
+
   createCard (cardName, taskId) {
     let cardId = this.state.currentCardIndex + cardName
     let newCard = {
@@ -159,6 +176,7 @@ class App extends React.Component {
           activeBoardTasks={this.state.activeBoardTasks}
           tasks={this.state.tasks}
           createTask={this.createTask}
+          updateTaskName={this.updateTaskName}
           cards={this.state.cards}
           createCard={this.createCard} />
       </div>

@@ -1,18 +1,24 @@
 import React from 'react'
 import Card from './Card'
 import CreateCard from './CreateItem'
+import TaskHeader from './TaskHeader'
 
 class Task extends React.Component {
   constructor (props) {
     super(props)
     this.createCard = this.createCard.bind(this)
+    this.updateTaskName = this.updateTaskName.bind(this)
   }
 
   createCard (cardName) {
     this.props.createCard(cardName, this.props.task.taskId)
   }
 
-  render (props) {
+  updateTaskName (taskName) {
+    this.props.updateTaskName(this.props.task.taskId, taskName)
+  }
+
+  render () {
     console.log('<Task.js render> props = ', this.props)
     let cards = []
     this.props.task.cards.forEach(cardId => {
@@ -22,12 +28,12 @@ class Task extends React.Component {
     })
     return (
       <div className='task-item'>
-        <div className='task-header'>{this.props.task.taskName}</div>
-
+        <TaskHeader
+          taskName={this.props.task.taskName}
+          updateTaskName={this.updateTaskName} />
         <div className='task-content'>
           {cards}
         </div>
-
         <div className='task-footer'>
           <CreateCard
             create={this.createCard}

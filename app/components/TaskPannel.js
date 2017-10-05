@@ -12,7 +12,8 @@ class TaskPannel extends React.Component {
         <Task key={taskId}
           task={this.props.tasks[taskId]}
           cards={this.props.cards}
-          createCard={this.props.createCard} />
+          createCard={this.props.createCard}
+          updateTaskName={this.props.updateTaskName} />
       )
     })
     return (

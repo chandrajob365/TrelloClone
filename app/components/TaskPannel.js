@@ -1,22 +1,26 @@
 import React from 'react'
 import Task from './Task'
-import CreateTask from './CreateTask'
+import CreateTask from './CreateItem'
 
 class TaskPannel extends React.Component {
   render (props) {
-    console.log('<TaskPannel, render >, props = ', this.props)
+    console.log('<TaskPannel, render >, this.props = ', this.props)
     let rows = []
-    this.props.activeBoardTasks.forEach(task => {
-      console.log('<TaskPannel, render > task = ', task)
+    this.props.activeBoardTasks.forEach(taskId => {
+      console.log('<TaskPannel, render > taskId = ', taskId)
       rows.push(
-        <Task key={task.taskId}
-          task={task} />
+        <Task key={taskId}
+          task={this.props.tasks[taskId]}
+          cards={this.props.cards}
+          createCard={this.props.createCard} />
       )
     })
     return (
       <div className='task-pannel-container'>
         {rows}
-        <CreateTask createTask={this.props.createTask} />
+        <CreateTask
+          create={this.props.createTask}
+          placeholder={'Create new Task'} />
       </div>
     )
   }

@@ -85,6 +85,8 @@
 }
 
 .task-item {
+  display: flex;
+  flex-direction: column;
   margin: 1px;
   padding-left: 5px;
   padding-right: 5px;
@@ -97,15 +99,16 @@
 .create-item {
   margin: 1px;
   background-color: #fff;
-  width: 150px;
-  height: 150px;
-  align-items: flex-end;
+  width: 100px;
+  height: auto;
 }
 
 .task-header {
+  display: flex;
   height: 25%;
   width: 100%;
   border-bottom: 1px solid black;
+  justify-content: space-between;
 }
 
 .task-content {
@@ -122,6 +125,7 @@
 .task-footer {
   height: 25%;
   width: 100%;
+  background-color: #fff;
 }
 
 /* Card start*/
@@ -155,7 +159,7 @@ input[type='button'] {
 }
 
 input[type='text'] {
-    padding: 6px 10px;
+    padding: 3px 5px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -168,4 +172,7 @@ input[type='text'] {
   background-color: #5995DA;
   height: 50px;
   flex: 1;
+}
+i:hover {
+  cursor:pointer;
 }

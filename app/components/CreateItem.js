@@ -1,6 +1,6 @@
 import React from 'react'
 
-class CreateTask extends React.Component {
+class CreateItem extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -20,7 +20,7 @@ class CreateTask extends React.Component {
   handleCreate (e) {
     if (this.state.value.length > 0) {
       this.hide()
-      this.props.createTask(this.state.value)
+      this.props.create(this.state.value)
     }
   }
 
@@ -37,8 +37,8 @@ class CreateTask extends React.Component {
 
   render () {
     return (
-      <div className='create-task'>
-        <input type='text' ref='taskName' placeholder='Create new Task' onChange={this.handleChange} />
+      <div className='create-item'>
+        <input type='text' ref='taskName' placeholder={this.props.placeholder} onChange={this.handleChange} />
         <input className='button-OK' type='button' ref='btn_Save' value='Save' style={{display: 'none'}} onClick={this.handleCreate} />
         <input className='button-Cancel' type='button' ref='btn_Cancel' value='Cancel' style={{display: 'none'}} onClick={this.handleCancel} />
       </div>
@@ -46,4 +46,4 @@ class CreateTask extends React.Component {
   }
 }
 
-export default CreateTask
+export default CreateItem

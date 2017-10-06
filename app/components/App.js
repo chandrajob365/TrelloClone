@@ -29,7 +29,7 @@ class App extends React.Component {
     this.deleteTask = this.deleteTask.bind(this)
     this.toggleCardModal = this.toggleCardModal.bind(this)
     this.updateCard = this.updateCard.bind(this)
-    this.handleDeleteCard = this.handleDeleteCard.bind(this)
+    this.deleteCard = this.deleteCard.bind(this)
   }
 
   displayTaskList (boardId) {
@@ -202,7 +202,7 @@ class App extends React.Component {
     })
   }
 
-  handleDeleteCard (cardId) {
+  deleteCard (cardId) {
     console.log('<App.js, handleDeleteCard > cardId = ', cardId)
     let cardsCopy = Object.assign({}, this.state.cards)
     delete cardsCopy[cardId]
@@ -242,7 +242,7 @@ class App extends React.Component {
           cards={this.state.cards}
           createCard={this.createCard}
           toggleCardModal={this.toggleCardModal}
-          handleDeleteCard={this.handleDeleteCard} />
+          handleDeleteCard={this.deleteCard} />
         {modal}
       </div>
     )

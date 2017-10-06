@@ -199,7 +199,7 @@ i:hover {
 /* Modal Content/Box */
 .modal-content {
     display: flex;
-    background-color: #fefefe;
+    background-color: #E8E8E8;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;

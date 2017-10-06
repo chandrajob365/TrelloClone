@@ -68,7 +68,7 @@ class CardModal extends React.Component {
             </div>
           </div>
           <div className='modal-footer'>
-            <input type='button' value='Submit' onClick={this.handleSubmit} />
+            <input type='button' className='button-OK' value='Submit' onClick={this.handleSubmit} />
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ import Footer from './app/components/Footer'
 // import style from './app/styles/main.css'
 
 const Root = () => (
-  <div className='body'>
+  <div>
     <HeaderPannel />
     <App />
     <Footer />

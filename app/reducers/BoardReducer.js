@@ -1,7 +1,14 @@
-const BoardReducer = (state = {}, action) => {
+const BoardReducer = (state = {
+  boards: {},
+  currentBoardIndex: 0,
+  activeBoardId: ''
+}, action) => {
+  console.log('BoardReducer, action = ', action)
+  console.log('<BoardReducer > state = ', state)
   switch (action.type) {
     case 'ADD_BOARD':
       let boardId = state.currentBoardIndex + action.boardName
+      console.log('boardId = ', boardId)
       return {
         ...state,
         boards: {

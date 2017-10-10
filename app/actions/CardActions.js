@@ -21,3 +21,11 @@ export let deleteCard = cardId => (
     cardId
   }
 )
+
+export let toggleCardModal = (cardId, taskName) => (
+  {
+    type: 'TOGGLE_CARD_MODAL',
+    cardId,
+    taskName
+  }
+)

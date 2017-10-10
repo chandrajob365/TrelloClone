@@ -46,7 +46,7 @@
   height: 80vh;
 }
 
-.board-pannel {
+.boards {
   display: flex;
   flex-direction: column;
   width: 100%;

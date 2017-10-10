@@ -1,6 +1,6 @@
 import React from 'react'
-import Board from './Board'
-
+// import Board from './Board'
+import BoardContainer from '../container/BoardContainer'
 class Boards extends React.Component {
   constructor (props) {
     super(props)
@@ -31,7 +31,7 @@ class Boards extends React.Component {
       console.log('<Boards.js, render> boards = ', boards)
       Object.keys(boards).map(board => {
         rows.push(
-          <Board key={boards[board].boardId}
+          <BoardContainer key={boards[board].boardId}
             board={boards[board]}
             updateBoardName={this.props.updateBoardName}
             displayTaskList={this.props.displayTaskList}

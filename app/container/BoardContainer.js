@@ -3,21 +3,21 @@ import Board from '../react_reduxComponent/Board'
 import {updateBoardName, deleteBoard, displayTaskList} from '../actions/BoardActions'
 const mapStateToProps = (state) => (
   {
-    boards: state.boards
+    boards: state.boards.boards
   }
 )
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateBoardName: (boardName, boardId) => {
+    updateBoardName: (boardName, boardId) => (
       dispatch(updateBoardName(boardName, boardId))
-    },
-    deleteBoard: boardId => {
+    ),
+    deleteBoard: boardId => (
       dispatch(deleteBoard(boardId))
-    },
-    displayTaskList: boardId => {
+    ),
+    displayTaskList: boardId => (
       dispatch(displayTaskList(boardId))
-    }
+    )
   }
 }
 

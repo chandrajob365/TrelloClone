@@ -43,7 +43,7 @@ const BoardReducer = (state = {
       if (action.boardId === state.activeBoardId) {
         activeBoardTasks = []
       }
-      delete boardsCopy[boardId]
+      delete boardsCopy[action.boardId]
       return {
         boards: boardsCopy,
         currentBoardIndex: --state.currentBoardIndex,

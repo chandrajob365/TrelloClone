@@ -6,6 +6,7 @@ class Board extends React.Component {
     this.state = {
       value: ''
     }
+    console.log('<Board.js> props = ', props)
     this.handleRename = this.handleRename.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleOk = this.handleOk.bind(this)

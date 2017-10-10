@@ -1,6 +1,5 @@
 import React from 'react'
-// import Board from './Board'
-import BoardContainer from '../container/BoardContainer'
+import Board from '../react_reduxComponent/Board'
 class Boards extends React.Component {
   constructor (props) {
     super(props)
@@ -31,21 +30,23 @@ class Boards extends React.Component {
       console.log('<Boards.js, render> boards = ', boards)
       Object.keys(boards).map(board => {
         rows.push(
-          <BoardContainer key={boards[board].boardId}
+          <Board key={boards[board].boardId}
             board={boards[board]}
             updateBoardName={this.props.updateBoardName}
-            displayTaskList={this.props.displayTaskList}
-            deleteBoard={this.props.deleteBoard} />
+            deleteBoard={this.props.deleteBoard}
+            displayTaskList={this.props.displayTaskList} />
         )
       })
     }
     console.log('<Boards.js, render> rows = ', rows)
     return (
-      <div className='boards'>
-        {rows}
-        <div className='create-board'>
-          <input type='text' ref='boardName' value={this.state.boardName} placeholder='Add new Board' onChange={this.handleChange} />
-          <input className='button-OK' type='button' value='Create' onClick={this.handleCreate} />
+      <div className='board-pannel-container'>
+        <div className='boards'>
+          {rows}
+          <div className='create-board'>
+            <input type='text' ref='boardName' value={this.state.boardName} placeholder='Add new Board' onChange={this.handleChange} />
+            <input className='button-OK' type='button' value='Create' onClick={this.handleCreate} />
+          </div>
         </div>
       </div>
     )

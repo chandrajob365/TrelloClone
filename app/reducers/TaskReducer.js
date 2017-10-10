@@ -1,34 +1,10 @@
-const TaskReducer = (state = {}, action) => {
+const TaskReducer = (state = {
+  activeBoardId: '',
+  tasks: {},
+  currentTaskIndex: 0
+}, action) => {
   switch (action.type) {
-    case 'ADD_BOARD':
-      let boardId = state.activeBoardId
-      console.log('<App.js, createTask > boardId = ', boardId)
-      let taskId = state.currentTaskIndex + action.taskName
-      let newTask = {
-        taskId: taskId,
-        taskName: action.taskName,
-        taskDesc: '',
-        taskDueDate: '',
-        taskCreationDate: new Date().toLocaleDateString(),
-        cards: []
-      }
-      return {
-        ...state,
-        boards: {
-          ...state.boards,
-          [boardId]: {
-            ...state.boards[boardId],
-            taskList: state.boards[boardId].taskList.concat(taskId)
-          }
-        },
-        tasks: {
-          ...state.tasks,
-          [taskId]: newTask
-        },
-        currentTaskIndex: ++state.currentTaskIndex,
-        activeBoardTasks: state.boards[boardId].taskList.concat(taskId)
-      }
-    case 'UPDATE_BOARD_NAME':
+    case 'UPDATE_TASK_NAME':
       return {
         ...state,
         tasks: {
@@ -39,7 +15,7 @@ const TaskReducer = (state = {}, action) => {
           }
         }
       }
-    case 'DELETE_BOARD':
+    case 'DELETE_TASK':
       let tasksCopy = Object.assign({}, state.tasks)
       delete tasksCopy[action.taskId]
       return {

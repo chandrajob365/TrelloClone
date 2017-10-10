@@ -1,7 +1,8 @@
 const BoardReducer = (state = {
   boards: {},
   currentBoardIndex: 0,
-  activeBoardId: ''
+  activeBoardId: '',
+  activeBoardTasks: []
 }, action) => {
   console.log('BoardReducer, action = ', action)
   console.log('<BoardReducer > state = ', state)
@@ -39,7 +40,7 @@ const BoardReducer = (state = {
       }
     case 'DELETE_BOARD':
       let boardsCopy = Object.assign({}, state.boards)
-      let activeBoardTasks = []
+      let activeBoardTasks = state.activeBoardTasks
       if (action.boardId === state.activeBoardId) {
         activeBoardTasks = []
       }
@@ -48,6 +49,12 @@ const BoardReducer = (state = {
         boards: boardsCopy,
         currentBoardIndex: --state.currentBoardIndex,
         activeBoardTasks: activeBoardTasks
+      }
+    case 'DISPLAY_TASKLIST':
+      return {
+        ...state,
+        activeBoardTasks: state.boards[action.boardId].taskList,
+        activeBoardId: action.boardId
       }
     default:
       return state

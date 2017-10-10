@@ -29,7 +29,7 @@ const BoardReducer = (state = {
         ...state,
         boards: {
           ...state.boards,
-          [boardId]: {
+          [action.boardId]: {
             boardId: action.boardId,
             boardName: action.boardName,
             taskList: [],

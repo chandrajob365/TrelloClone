@@ -7,9 +7,10 @@ import {createStore} from 'redux'
 import AppReducer from './app/reducers/AppReducer'
 import {Provider} from 'react-redux'
 
+let state = {}
 const Root = () => {
   return (
-    <Provider store={createStore(AppReducer)} >
+    <Provider store={createStore(AppReducer, state)} >
       <div>
         <HeaderPannel />
         <AppContainer />

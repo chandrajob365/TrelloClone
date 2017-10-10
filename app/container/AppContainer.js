@@ -1,11 +1,12 @@
 import {connect} from 'react-redux'
 import App from '../react_reduxComponent/App'
 
-const mapStateToProps = (state) => (
-  {
+const mapStateToProps = (state) => {
+  console.log('<AppContainer> state = ', state)
+  return {
     isOpen: state.isOpen
   }
-)
+}
 
 const AppContainer = connect(
   mapStateToProps,

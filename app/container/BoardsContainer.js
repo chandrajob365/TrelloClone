@@ -1,20 +1,28 @@
 import {connect} from 'react-redux'
 import Boards from '../react_reduxComponent/Boards'
-import {addBoard} from '../actions/BoardActions'
+import {addBoard, updateBoardName, deleteBoard, displayTaskList} from '../actions/BoardActions'
 
 const mapStateToProps = (state) => {
-  console.log('<BoardContainer> state = ', state)
+  console.log('<BoardContainer, mapStateToProps> state = ', state)
   return {
     boards: state.boards.boards
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  console.log('<BoardsContainer, mapDispatchToProps> dispatch = ', dispatch)
   return {
-    addBoard: boardName => {
+    addBoard: boardName => (
       dispatch(addBoard(boardName))
-    }
+    ),
+    updateBoardName: (boardName, boardId) => (
+      dispatch(updateBoardName(boardName, boardId))
+    ),
+    deleteBoard: boardId => (
+      dispatch(deleteBoard(boardId))
+    ),
+    displayTaskList: boardId => (
+      dispatch(displayTaskList(boardId))
+    )
   }
 }
 

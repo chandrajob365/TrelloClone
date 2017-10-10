@@ -1,11 +1,14 @@
+// NOT USING THIS
+
 import {connect} from 'react-redux'
 import Board from '../react_reduxComponent/Board'
 import {updateBoardName, deleteBoard, displayTaskList} from '../actions/BoardActions'
-const mapStateToProps = (state) => (
-  {
+const mapStateToProps = (state) => {
+  console.log('<BoardsContainer, mapStateToProps> state = ', state)
+  return {
     boards: state.boards.boards
   }
-)
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {

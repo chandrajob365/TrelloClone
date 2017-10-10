@@ -1,30 +1,10 @@
 
-const CardReducer = (state = {}, action) => {
+const CardReducer = (state = {
+  cards: {},
+  currentCardIndex: 0,
+  isOpen: false
+}, action) => {
   switch (action.type) {
-    case 'CREATE_CARD':
-      let cardId = state.currentCardIndex + action.cardName
-      let newCard = {
-        cardId: cardId,
-        cardName: action.cardName,
-        cardDesc: '',
-        cardDueDate: '',
-        cardCreationDate: new Date().toLocaleDateString() // Format -> '12/21/2017'
-      }
-      return {
-        ...state,
-        tasks: {
-          ...state.tasks,
-          [action.taskId]: {
-            ...state.tasks[action.taskId],
-            cards: state.tasks[action.taskId].cards.concat(cardId)
-          }
-        },
-        cards: {
-          ...state.cards,
-          [cardId]: newCard
-        },
-        currentCardIndex: ++state.currentCardIndex
-      }
     case 'UPDATE_CARD':
       return {
         ...state,
@@ -39,10 +19,19 @@ const CardReducer = (state = {}, action) => {
       }
     case 'DELETE_CARD':
       let cardsCopy = Object.assign({}, state.cards)
-      delete cardsCopy[cardId]
+      delete cardsCopy[action.cardId]
       return {
         ...state,
         cards: cardsCopy
+      }
+    case 'TOGGLE_CARD_MODAL':
+      return {
+        ...state,
+        isOpen: !state.isOpen,
+        openedCardDetail: {
+          cardId: action.cardId || '',
+          taskName: action.taskName || ''
+        }
       }
     default:
       return state

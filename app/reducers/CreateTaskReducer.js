@@ -1,6 +1,7 @@
-const CreateTaskReducer = (boardsState, taskState, action) => {
+const CreateTaskReducer = (boardsState, taskState, cardState, action) => {
   console.log('<CreateTaskReducer> boardsState = ', boardsState)
   console.log('<CreateTaskReducer> taskState = ', taskState)
+  console.log('<CreateTaskReducer> taskState = ', cardState)
   console.log('<CreateTaskReducer> action = ', action)
   switch (action.type) {
     case 'CREATE_TASK':
@@ -35,9 +36,12 @@ const CreateTaskReducer = (boardsState, taskState, action) => {
           },
           currentTaskIndex: ++taskState.currentTaskIndex,
           activeBoardTasks: boardsState.boards[boardId].taskList.concat(taskId)
+        },
+        cards: {
+          ...cardState
         }
       }
-    default: return {boards: boardsState, tasks: taskState}
+    default: return {boards: boardsState, tasks: taskState, cards: cardState}
   }
 }
 

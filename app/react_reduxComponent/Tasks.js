@@ -12,8 +12,12 @@ class Tasks extends React.Component {
         rows.push(
           <Task key={taskId}
             task={this.props.tasks[taskId]}
+            cards={this.props.cards}
+            createCard={this.props.createCard}
             updateTaskName={this.props.updateTaskName}
-            deleteTask={this.props.deleteTask} />
+            deleteTask={this.props.deleteTask}
+            toggleCardModal={this.props.toggleCardModal}
+            handleDeleteCard={this.props.deleteCard} />
         )
       }
     })

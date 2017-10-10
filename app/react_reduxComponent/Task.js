@@ -1,5 +1,5 @@
 import React from 'react'
-// import Card from './Card'
+import Card from './Card'
 import CreateCard from './CreateItem'
 import TaskHeader from './TaskHeader'
 
@@ -9,7 +9,7 @@ class Task extends React.Component {
     this.createCard = this.createCard.bind(this)
     this.updateTaskName = this.updateTaskName.bind(this)
     this.deleteTask = this.deleteTask.bind(this)
-    this.displayCardModal = this.displayCardModal.bind(this)
+    // this.displayCardModal = this.displayCardModal.bind(this)
   }
 
   createCard (cardName) {
@@ -24,22 +24,24 @@ class Task extends React.Component {
     this.props.deleteTask(this.props.task.taskId)
   }
 
-  displayCardModal (cardId) {
-    this.props.toggleCardModal(cardId, this.props.task.taskName)
-  }
+  // displayCardModal (cardId) {
+  //   this.props.toggleCardModal(cardId, this.props.task.taskName)
+  // }
   render () {
     console.log('<Task.js render> props = ', this.props)
-    // let cards = []
-    // this.props.task.cards.forEach(cardId => {
-    //   if (this.props.cards[cardId]) {
-    //     cards.push(
-    //       <Card key={cardId}
-    //         card={this.props.cards[cardId]}
-    //         displayCardModal={this.displayCardModal}
-    //         handleDeleteCard={this.props.handleDeleteCard} />
-    //     )
-    //   }
-    // })
+    let cardList = this.props.task.cards
+    let cards = []
+    if (cardList) {
+      cardList.forEach(cardId => {
+        if (this.props.cards[cardId]) {
+          cards.push(
+            <Card key={cardId}
+              card={this.props.cards[cardId]}
+              handleDeleteCard={this.props.handleDeleteCard} />
+          )
+        }
+      })
+    }
     return (
       <div className='task-item'>
         <TaskHeader
@@ -47,7 +49,7 @@ class Task extends React.Component {
           updateTaskName={this.updateTaskName}
           deleteTask={this.deleteTask} />
         <div className='task-content'>
-          'Hello'
+          {cards}
         </div>
         <div className='task-footer'>
           <CreateCard

@@ -19,3 +19,10 @@ export let deleteBoard = boardId => (
     boardId
   }
 )
+
+export let displayTaskList = boardId => (
+  {
+    type: 'DISPLAY_TASKLIST',
+    boardId
+  }
+)

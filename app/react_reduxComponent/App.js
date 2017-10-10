@@ -1,6 +1,6 @@
 import React from 'react'
 import BoardsContainer from '../container/BoardsContainer'
-// import TaskContainer from './TaskContainer'
+import TasksContainer from '../container/TasksContainer'
 // import CardModalContainer from './CardModalContainer'
 
 const App = (props) => {
@@ -12,6 +12,7 @@ const App = (props) => {
   return (
     <div className='app-container'>
       <BoardsContainer />
+      <TasksContainer />
     </div>
   )
 }

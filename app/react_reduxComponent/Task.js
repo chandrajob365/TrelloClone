@@ -9,7 +9,7 @@ class Task extends React.Component {
     this.createCard = this.createCard.bind(this)
     this.updateTaskName = this.updateTaskName.bind(this)
     this.deleteTask = this.deleteTask.bind(this)
-    // this.displayCardModal = this.displayCardModal.bind(this)
+    this.displayCardModal = this.displayCardModal.bind(this)
   }
 
   createCard (cardName) {
@@ -24,9 +24,9 @@ class Task extends React.Component {
     this.props.deleteTask(this.props.task.taskId)
   }
 
-  // displayCardModal (cardId) {
-  //   this.props.toggleCardModal(cardId, this.props.task.taskName)
-  // }
+  displayCardModal (cardId) {
+    this.props.toggleCardModal(cardId, this.props.task.taskName)
+  }
   render () {
     console.log('<Task.js render> props = ', this.props)
     let cardList = this.props.task.cards
@@ -37,6 +37,7 @@ class Task extends React.Component {
           cards.push(
             <Card key={cardId}
               card={this.props.cards[cardId]}
+              displayCardModal={this.displayCardModal}
               handleDeleteCard={this.props.handleDeleteCard} />
           )
         }

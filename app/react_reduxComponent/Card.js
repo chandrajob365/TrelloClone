@@ -13,8 +13,8 @@ class Card extends React.Component {
   }
 
   handleClick () {
-    console.log('cardName = ', this.props.card.cardName, ' cardID = ', this.props.card.cardId)
-    // this.props.displayCardModal(this.props.card.cardId)
+    console.log('<Card.js, handle> cardName = ', this.props.card.cardName, ' cardID = ', this.props.card.cardId)
+    this.props.displayCardModal(this.props.card.cardId)
   }
   render (props) {
     return (

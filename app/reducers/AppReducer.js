@@ -11,7 +11,7 @@ const combinedReducer = combineReducers({
   cards: CardReducer
 })
 
-const secondReducer = function (state, action) {
+const secondReducer = (state, action) => {
   console.log('<SecondReducer> state = ', state, '  action = ', action)
   let finalState = null
   switch (action.type) {

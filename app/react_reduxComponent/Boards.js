@@ -1,5 +1,5 @@
 import React from 'react'
-import Board from '../react_reduxComponent/Board'
+import Board from './Board'
 class Boards extends React.Component {
   constructor (props) {
     super(props)

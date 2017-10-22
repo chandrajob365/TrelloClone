@@ -1,8 +1,11 @@
-import React from 'react'
-import {render} from 'react-dom'
-import Root from './app/react_reduxComponent/Root'
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
 
-render(
-  <Root />,
-  document.getElementById('root')
-)
+// tells the express to look for static files in these directories
+app.use(express.static('./server/static/'))
+app.use(express.static('./client/dist/'))
+
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000 or http://127.0.0.1:3000')
+})

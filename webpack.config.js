@@ -1,24 +1,29 @@
-const HTMLWebpackPlugin = require('html-webpack-plugin')
-const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
-  template: __dirname + '/index.html',
-  filename: 'index.html',
-  inject: 'body'
-})
+const path = require('path')
 
 module.exports = {
-  entry: __dirname + '/index.js',
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
-      }
-    ]
-  },
+  // the entry file for the bundle
+  entry: path.join(__dirname, '/client/src/app/client_index.js'),
+
+  // the bundle file we will get in the result
   output: {
-    filename: 'transformed.js',
-    path: __dirname + '/build'
+    path: path.join(__dirname, '/client/dist/js'),
+    filename: 'client_index.js'
   },
-  plugins: [HTMLWebpackPluginConfig]
+
+  module: {
+
+    // apply loaders to files that meet given conditions
+    loaders: [{
+      test: /\.js?$/,
+      include: path.join(__dirname, '/client/src/app'),
+      exclude: ['node_modules'],
+      loader: 'babel-loader',
+      query: {
+        presets: ['react', 'es2015']
+      }
+    }]
+  },
+
+  // start Webpack in a watch mode, so Webpack will rebuild the bundle on changes
+  watch: true
 }

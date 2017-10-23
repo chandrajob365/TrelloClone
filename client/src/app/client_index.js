@@ -1,8 +1,19 @@
 import React from 'react'
 import {render} from 'react-dom'
-import Root from '../app/react_reduxComponent/Root'
+import BaseRoot from '../app/react_reduxComponent/BaseRoot'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import {BrowserRouter} from 'react-router-dom'
+import configureStore from '../app/store/configureStore'
+import {Provider} from 'react-redux'
 
 render(
-  <Root />,
+  (<MuiThemeProvider muiTheme={getMuiTheme()}>
+    <Provider store={configureStore()} >
+      <BrowserRouter>
+        <BaseRoot />
+      </BrowserRouter>
+    </Provider>
+  </MuiThemeProvider>),
   document.getElementById('root')
 )

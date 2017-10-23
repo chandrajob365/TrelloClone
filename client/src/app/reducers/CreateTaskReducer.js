@@ -1,7 +1,8 @@
-const CreateTaskReducer = (boardsState, taskState, cardState, action) => {
+const CreateTaskReducer = (boardsState, taskState, cardState, userState, action) => {
   console.log('<CreateTaskReducer> boardsState = ', boardsState)
   console.log('<CreateTaskReducer> taskState = ', taskState)
   console.log('<CreateTaskReducer> taskState = ', cardState)
+  console.log('<CreateTaskReducer> userState = ', userState)
   console.log('<CreateTaskReducer> action = ', action)
   switch (action.type) {
     case 'CREATE_TASK':
@@ -41,7 +42,7 @@ const CreateTaskReducer = (boardsState, taskState, cardState, action) => {
           ...cardState
         }
       }
-    default: return {boards: boardsState, tasks: taskState, cards: cardState}
+    default: return {boards: boardsState, tasks: taskState, cards: cardState, user: userState}
   }
 }
 

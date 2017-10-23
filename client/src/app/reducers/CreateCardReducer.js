@@ -1,4 +1,4 @@
-const CreateCardReducer = (boardsState, taskState, cardState, action) => {
+const CreateCardReducer = (boardsState, taskState, cardState, userState, action) => {
   console.log('<CreateCardReducer> taskState = ', boardsState)
   console.log('<CreateCardReducer> taskState = ', taskState)
   console.log('<CreateCardReducer> cardState = ', cardState)
@@ -36,7 +36,7 @@ const CreateCardReducer = (boardsState, taskState, cardState, action) => {
           currentCardIndex: ++cardState.currentCardIndex
         }
       }
-    default: return {tasks: taskState, cards: cardState}
+    default: return {tasks: taskState, cards: cardState, users: userState}
   }
 }
 

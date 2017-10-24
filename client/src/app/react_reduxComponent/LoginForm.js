@@ -8,11 +8,17 @@ const LoginForm = ({
   onSubmit,
   onChange,
   errors,
-  user
+  user,
+  isPending,
+  isSuccess,
+  isError
 }) => (
   <Card className='container'>
     <form action='/' onSubmit={onSubmit}>
       <h2 className='card-heading'> Login </h2>
+      {isPending && <div className='processing-message'>Please wait...</div> }
+      {isSuccess && <div className='success-message'>Success.</div> }
+      {isError && <div className='error-message'>{isError}</div> }
       {errors.sumary && <p className='error-message'>{errors.summary}</p>}
 
       <div className='field-line'>

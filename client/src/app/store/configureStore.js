@@ -3,10 +3,10 @@ import AppReducer from '../reducers/AppReducer'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 
-const configureStore = () => {
+const store = () => {
   return createStore(
     AppReducer,
      {}, applyMiddleware(thunk, logger))
 }
 
-export default configureStore
+export default store

@@ -4,7 +4,6 @@ import LoginForm from '../react_reduxComponent/LoginForm.js'
 class LoginPage extends React.Component {
   constructor (props) {
     super(props)
-
     this.state = {
       errors: {},
       user: {
@@ -12,14 +11,14 @@ class LoginPage extends React.Component {
         password: ''
       }
     }
-    console.log('Props = ', this.props)
+    console.log('<LoginPage, constructor> Props = ', this.props)
     this.processForm = this.processForm.bind(this)
     this.changeUser = this.changeUser.bind(this)
   }
 
   processForm (event) {
     event.preventDefault()
-    this.props.login(this.state.user.emailId, this.state.user.password)
+    this.props.login(this.state.user.email, this.state.user.password)
   }
 
   changeUser (event) {
@@ -40,6 +39,9 @@ class LoginPage extends React.Component {
         onChange={this.changeUser}
         errors={this.state.errors}
         user={this.state.user}
+        isPending={this.props.isPending}
+        isSuccess={this.props.isSuccess}
+        isError={this.props.isError}
       />
     )
   }

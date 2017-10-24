@@ -1,22 +1,22 @@
 const UserReducer = (state = {
-  isLoginSuccess: false,
-  isLoginPending: false,
-  loginError: null
+  isSuccess: false,
+  isPending: false,
+  isError: null
 }, action) => {
   console.log('<UserReducer> state = ', state)
   console.log('<UserReducer> action = ', action)
   switch (action.type) {
-    case 'SET_LOGIN_PENDING':
+    case 'SET_PENDING':
       return Object.assign({}, state, {
-        isLoginPending: action.isLoginPending
+        isPending: action.isPending
       })
-    case 'SET_LOGIN_SUCCESS':
+    case 'SET_SUCCESS':
       return Object.assign({}, state, {
-        isLoginSuccess: action.isLoginSuccess
+        isSuccess: action.isSuccess
       })
-    case 'SET_LOGIN_ERROR':
+    case 'SET_ERROR':
       return Object.assign({}, state, {
-        loginError: action.loginError
+        isError: action.isError
       })
     default:
       return state

@@ -30,9 +30,7 @@ class SignUpPage extends React.Component {
 
   processForm (event) {
     event.preventDefault()
-    console.log('name:', this.state.user.name)
-    console.log('email:', this.state.user.email)
-    console.log('password:', this.state.user.password)
+    this.props.register(this.state.user.email, this.state.user.name, this.state.user.password)
   }
 
   render () {
@@ -42,6 +40,9 @@ class SignUpPage extends React.Component {
         onChange={this.changeUser}
         errors={this.state.errors}
         user={this.state.user}
+        isPending={this.props.isPending}
+        isSuccess={this.props.isSuccess}
+        isError={this.props.isError}
       />
     )
   }

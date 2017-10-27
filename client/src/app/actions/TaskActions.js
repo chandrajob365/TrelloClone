@@ -1,8 +1,14 @@
 // change createTask => addTask
-export let createTask = taskName => (
+export let populateTasks = tasks => (
+  {
+    type: 'POPULATE_TAKS',
+    tasks
+  }
+)
+export let createTask = task => (
   {
     type: 'CREATE_TASK',
-    taskName
+    task
   }
 )
 
@@ -17,6 +23,14 @@ export let updateTaskName = (taskId, taskName) => (
 export let deleteTask = taskId => (
   {
     type: 'DELETE_TASK',
+    taskId
+  }
+)
+
+export let updateTaskList = (card, taskId) => (
+  {
+    type: 'UPDATE_TASKLIST',
+    card,
     taskId
   }
 )

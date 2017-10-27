@@ -7,22 +7,34 @@ const BoardReducer = (state = {
   console.log('BoardReducer, action = ', action)
   console.log('<BoardReducer > state = ', state)
   switch (action.type) {
+    case 'POPULATE_BOARDS':
+      let boardList = action.boards
+      boardList.forEach(board => {
+        state.boards[board._id] = board
+      })
+      return {
+        ...state,
+        boards: {
+          ...state.boards
+        },
+        activeBoardId: action.boards[0] !== undefined ? action.boards[0]._id : 0,
+        activeBoardTasks: []
+      }
     case 'ADD_BOARD':
-      let boardId = state.currentBoardIndex + action.boardName
-      console.log('boardId = ', boardId)
+      // let boardId = state.currentBoardIndex + action.boardName
+      console.log('<BoardReducer.js, ADD_BOARD> boardId = ', action.board._id)
       return {
         ...state,
         boards: {
           ...state.boards,
-          [boardId]: {
-            boardId: boardId,
-            boardName: action.boardName,
+          [action.board._id]: {
+            _id: action.board._id,
+            boardName: action.board.boardName,
             taskList: [],
             desc: ''
           }
         },
-        currentBoardIndex: ++state.currentBoardIndex,
-        activeBoardId: boardId,
+        activeBoardId: action.board._id,
         activeBoardTasks: []
       }
     case 'UPDATE_BOARD_NAME':
@@ -31,7 +43,7 @@ const BoardReducer = (state = {
         boards: {
           ...state.boards,
           [action.boardId]: {
-            boardId: action.boardId,
+            _id: action.boardId,
             boardName: action.boardName,
             taskList: [],
             desc: ''
@@ -46,8 +58,8 @@ const BoardReducer = (state = {
       }
       delete boardsCopy[action.boardId]
       return {
+        ...state,
         boards: boardsCopy,
-        currentBoardIndex: --state.currentBoardIndex,
         activeBoardTasks: activeBoardTasks
       }
     case 'DISPLAY_TASKLIST':

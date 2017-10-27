@@ -1,7 +1,7 @@
-export let createCard = (cardName, taskId) => (
+export let createCard = (card, taskId) => (
   {
     type: 'CREATE_CARD',
-    cardName,
+    card,
     taskId
   }
 )
@@ -15,10 +15,11 @@ export let updateCard = (cardId, cardDesc, cardDueDate) => (
   }
 )
 
-export let deleteCard = cardId => (
+export let deleteCard = (cardId, taskId) => (
   {
     type: 'DELETE_CARD',
-    cardId
+    cardId,
+    taskId
   }
 )
 

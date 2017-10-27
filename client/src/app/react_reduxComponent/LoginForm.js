@@ -19,7 +19,7 @@ const LoginForm = ({
       {isPending && <div className='processing-message'>Please wait...</div> }
       {isSuccess && <div className='success-message'>Success.</div> }
       {isError && <div className='error-message'>{isError}</div> }
-      {errors.sumary && <p className='error-message'>{errors.summary}</p>}
+      {(errors.length > 0) && <p className='error-message'>{errors}</p>}
 
       <div className='field-line'>
         <TextField

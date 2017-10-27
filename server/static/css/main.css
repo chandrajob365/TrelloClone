@@ -25,14 +25,6 @@
   justify-content: flex-end;
 }
 
-.login {
-  margin-left: 20px;
-}
-
-.signup {
-  margin-left: auto;
-}
-
 .app-container {
   display: flex;
   justify-content: flex-start;
@@ -41,7 +33,6 @@
 /* Board related start */
 .board-pannel-container {
   display: flex;
-  flex:.5;
   border: 1px solid black;
   background-color: #D6E9FE;
   height: 80vh;
@@ -71,7 +62,6 @@
   padding: 10px 10px;
   margin: 0 0 0 2px;
   border: 1px solid black;
-  flex: 2;
   flex-flow: wrap;
   height: 80vh;
   overflow-y: scroll;
@@ -291,7 +281,7 @@ a:hover {
 .container {
   margin: 0 auto;
   text-align: center;
-  width: 700px;
+  width: 900px;
 }
 
 .card-heading {

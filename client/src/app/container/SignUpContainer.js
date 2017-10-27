@@ -4,7 +4,7 @@ import {setPending, setSuccess, setError} from '../actions/AuthenticationAction'
 import axios from 'axios'
 const ROOT_URL = 'http://localhost:3000'
 
-export let register = (emailId, name, password) => {
+export let register = (emailId, name, password, cb) => {
   console.log('Entry register emailId = ', emailId, '  password = ', password, ' name = ', name)
   return dispatch => {
     dispatch(setPending(true))
@@ -15,11 +15,12 @@ export let register = (emailId, name, password) => {
       console.log('<SignUpContainer SUCESS RESPONSE >response.msg = ', response)
       dispatch(setPending(false))
       dispatch(setSuccess(true))
-      console.log('User is authenticated')
+      console.log('User Registration Successfull')
+      cb()
     })
     .catch(error => {
-      console.log('<SignUpContainer FAILURE RESPONSE> error.response = ', error.response)
-      dispatch(setError(error.response.data))
+      console.log('<SignUpContainer FAILURE RESPONSE> error = ', error)
+      dispatch(setError(error.response))
     })
   }
 }
@@ -34,15 +35,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    register: (email, name, password) => (
-       dispatch(register(email, name, password))
+    register: (email, name, password, cb) => (
+       dispatch(register(email, name, password, cb))
     )
   }
 }
 
-const LoginContainer = connect(
+const SignUpContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(SignUpPage)
 
-export default LoginContainer
+export default SignUpContainer

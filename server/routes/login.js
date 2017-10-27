@@ -6,11 +6,13 @@ exports.login = (req, res, next) => {
   if (req.body.emailId && req.body.password) {
     Users.findUser(req.body.emailId, (user, err) => {
       console.log('<Login> err = ', err, '   user = ', user)
-      if (err) return res.status(500).send({msg: err.msg});
+      if (err) return res.status(500).json({errMsg: err.msg});
       (user === 'undefined' || user === null)
-        ? res.status(401).send(req.body.emailId + ' doesn\'t exist')
+        ? res.status(401).json({errMsg: req.body.emailId + ' doesn\'t exist'})
         : validateUser(req, res, user)
     })
+  } else {
+    res.status(422).send('Invalid request')
   }
 }
 
@@ -18,11 +20,10 @@ const validateUser = (req, res, user) => {
   console.log('<Login.js validateUser>, req.body.password = ', req.body.password, ' user.password = ', user.password)
   bcrypt.compare(req.body.password, user.password, (err, same) => {
     console.log('<<Login.js validateUser> After compare err = ', err, '  same = ', same)
-    if (err) return res.send({msg: 'Error in unHashing', err})
+    if (err) return res.status(500).json({errMsg: 'Error in unHashing' + err})
     if (same) {
-      console.log('user._id = ', user._id.getTimestamp())
-      res.status(200).send({msg: 'User validated', user: user})
-    } else res.status(401).send({msg: 'Please provide a valid pwd !!!'})
+      res.status(200).json({msg: 'User validated', name: user.name, email: user.emailId})
+    } else res.status(401).json({errMsg: 'Please provide a valid pwd !!!'})
   })
 }
 

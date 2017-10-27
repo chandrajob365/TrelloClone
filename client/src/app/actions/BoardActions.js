@@ -1,7 +1,14 @@
-export let addBoard = boardName => (
+export let populateBoard = boards => (
+  {
+    type: 'POPULATE_BOARDS',
+    boards
+  }
+)
+
+export let addBoard = board => (
   {
     type: 'ADD_BOARD',
-    boardName
+    board
   }
 )
 

@@ -8,13 +8,13 @@ class Card extends React.Component {
   }
 
   handleDelete (e) {
-    this.props.handleDeleteCard(this.props.card.cardId)
+    this.props.handleDeleteCard(this.props.card._id)
     e.stopPropagation()
   }
 
   handleClick () {
-    console.log('<Card.js, handle> cardName = ', this.props.card.cardName, ' cardID = ', this.props.card.cardId)
-    this.props.displayCardModal(this.props.card.cardId)
+    console.log('<Card.js, handle> cardName = ', this.props.card.cardName, ' cardID = ', this.props.card._id)
+    // this.props.displayCardModal(this.props.card.cardId)
   }
   render (props) {
     return (

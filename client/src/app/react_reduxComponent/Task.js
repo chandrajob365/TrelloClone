@@ -10,37 +10,44 @@ class Task extends React.Component {
     this.updateTaskName = this.updateTaskName.bind(this)
     this.deleteTask = this.deleteTask.bind(this)
     this.displayCardModal = this.displayCardModal.bind(this)
+    this.handleDeleteCard = this.handleDeleteCard.bind(this)
   }
 
   createCard (cardName) {
-    this.props.createCard(cardName, this.props.task.taskId)
+    this.props.createCard(cardName, this.props.task._id)
   }
 
   updateTaskName (taskName) {
-    this.props.updateTaskName(this.props.task.taskId, taskName)
+    this.props.updateTaskName(this.props.task._id, taskName)
   }
 
   deleteTask () {
-    this.props.deleteTask(this.props.task.taskId)
+    this.props.deleteTask(this.props.task._id)
   }
 
   displayCardModal (cardId) {
-    this.props.toggleCardModal(cardId, this.props.task.taskName)
+    // this.props.toggleCardModal(cardId, this.props.task.taskName)
   }
+
+  handleDeleteCard (cardId) {
+    this.props.handleDeleteCard(cardId, this.props.task._id)
+  }
+
   render () {
     console.log('<Task.js render> props = ', this.props)
-    let cardList = this.props.task.cards
+    let cardList = this.props.cards
+    console.log('<Task.js, render> cardList = ', cardList)
     let cards = []
-    if (cardList) {
-      cardList.forEach(cardId => {
-        if (this.props.cards[cardId]) {
-          cards.push(
-            <Card key={cardId}
-              card={this.props.cards[cardId]}
-              displayCardModal={this.displayCardModal}
-              handleDeleteCard={this.props.handleDeleteCard} />
-          )
-        }
+    if (cardList.length > 0) {
+      cardList.forEach(card => {
+        console.log('<Task.js, render> card = ', card)
+        let cardKey = Object.keys(card)[0]
+        console.log('<Task.js, render> cardId = ', cardKey, ' card[cardKey] = ', card)
+        cards.push(
+          <Card key={card[cardKey]._id}
+            card={card[cardKey]}
+            handleDeleteCard={this.handleDeleteCard} />
+        )
       })
     }
     return (
@@ -48,7 +55,8 @@ class Task extends React.Component {
         <TaskHeader
           taskName={this.props.task.taskName}
           updateTaskName={this.updateTaskName}
-          deleteTask={this.deleteTask} />
+          deleteTask={this.deleteTask}
+          />
         <div className='task-content'>
           {cards}
         </div>

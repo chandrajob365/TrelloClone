@@ -30,9 +30,42 @@ class SignUpPage extends React.Component {
 
   processForm (event) {
     event.preventDefault()
-    this.props.register(this.state.user.email, this.state.user.name, this.state.user.password)
+    if (this.isValidInput()) {
+      this.setState({
+        errors: ''
+      })
+      this.props.register(this.state.user.email, this.state.user.name, this.state.user.password, () => {
+        this.props.history.push('/login')
+      })
+    } else {
+      this.updateError()
+    }
   }
 
+  isValidInput () {
+    if (this.state.user.email.length > 0 &&
+        this.state.user.password.length > 0 &&
+        this.state.user.name.length > 0) {
+      return true
+    }
+    return false
+  }
+
+  updateError () {
+    if (this.state.user.email.length === 0) {
+      this.setState({
+        errors: 'Missing Email'
+      })
+    } else if (this.state.user.name.length === 0) {
+      this.setState({
+        errors: 'Missing Name'
+      })
+    } else {
+      this.setState({
+        errors: 'Missing Password'
+      })
+    }
+  }
   render () {
     return (
       <SignUpForm

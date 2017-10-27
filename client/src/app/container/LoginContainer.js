@@ -4,7 +4,7 @@ import {setPending, setSuccess, setError} from '../actions/AuthenticationAction'
 import axios from 'axios'
 const ROOT_URL = 'http://localhost:3000'
 
-export let login = (emailId, password) => {
+export let login = (emailId, password, cb) => {
   console.log('Entry login emailId = ', emailId, '  password = ', password)
   return dispatch => {
     dispatch(setPending(true))
@@ -15,13 +15,18 @@ export let login = (emailId, password) => {
       console.log('<LoginContainer SUCESS RESPONSE >response.msg = ', response.msg)
       dispatch(setPending(false))
       dispatch(setSuccess(true))
-      console.log('User is authenticated')
+      console.log('User is authenticated, response = ', response)
+      localStorage.setItem('user', JSON.stringify({
+        name: response.data.name,
+        email: response.data.email
+      }))
+      cb()
     })
     .catch(error => {
-      console.log('<LoginContainer FAILURE RESPONSE> error.response = ', error.response)
+      console.log('<LoginContainer FAILURE RESPONSE> error.response = ', error)
       dispatch(setPending(false))
       dispatch(setSuccess(false))
-      dispatch(setError(error.response.data))
+      // dispatch(setError(error.response.data))
     })
   }
 }
@@ -36,8 +41,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (email, password) => (
-       dispatch(login(email, password))
+    login: (email, password, cb) => (
+       dispatch(login(email, password, cb))
     )
   }
 }

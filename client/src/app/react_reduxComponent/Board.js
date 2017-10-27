@@ -32,7 +32,8 @@ class Board extends React.Component {
   handleOk (e) {
     if (this.state.value.length > 0) {
       console.log('this.state.value = ', this.state.value)
-      this.props.updateBoardName(this.state.value, this.props.board.boardId)
+      console.log('<Board.js, handleOk> this.props.board._id = ', this.props.board._id)
+      this.props.updateBoardName(this.state.value, this.props.board._id)
     }
     this.hide()
   }
@@ -44,12 +45,12 @@ class Board extends React.Component {
 
   handleDisplayTaskList (e) {
     if (e.target.tagName === 'DIV') {
-      this.props.displayTaskList(this.props.board.boardId)
+      this.props.displayTaskList(this.props.board._id)
     }
   }
 
   handleDelete (e) {
-    this.props.deleteBoard(this.props.board.boardId)
+    this.props.deleteBoard(this.props.board._id)
   }
 
   hide () {

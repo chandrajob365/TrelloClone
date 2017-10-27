@@ -5,7 +5,7 @@ class LoginPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      errors: {},
+      errors: '',
       user: {
         email: '',
         password: ''
@@ -18,7 +18,29 @@ class LoginPage extends React.Component {
 
   processForm (event) {
     event.preventDefault()
-    this.props.login(this.state.user.email, this.state.user.password)
+    if (this.isValidInput()) {
+      this.setState({
+        errors: ''
+      })
+      this.props.login(this.state.user.email, this.state.user.password, () => {
+        this.props.history.push('/dashboard')
+      })
+    } else if (this.state.user.email.length === 0) {
+      this.setState({
+        errors: 'Missing Email'
+      })
+    } else {
+      this.setState({
+        errors: 'Missing Password'
+      })
+    }
+  }
+
+  isValidInput () {
+    if (this.state.user.email.length > 0 && this.state.user.password.length > 0) {
+      return true
+    }
+    return false
   }
 
   changeUser (event) {

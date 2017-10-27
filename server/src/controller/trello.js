@@ -36,23 +36,25 @@ exports.getTasks = (boardId, cb) => {
     board.taskList.forEach(taskId => {
       let pTask = new Promise((resolve, reject) => {
         getTask(taskId, (task) => {
-          task = task.toObject()
-          if (error) reject(Error('<Fn: getTask> Internal DB error'))// return cb(null, {msg: '<Fn: getTask> Internal DB error', error})
-          if (!task) reject(Error('<Fn: getTask> Task Not found'))// return cb(null, {msg: 'Task Not found'})
-          let cardsPromiseList = []
-          task.cardList.forEach(cardId => {
-            let pCard = new Promise((resolve, reject) => {
-              getCard(cardId, (card, error) => {
-                if (error) reject(Error('<Fn: getCard> Internal DB error'))// return cb(null, {msg: '<Fn: getCard> Internal DB error', error})
-                if (!task) reject(Error('Card Not found')) // return cb(null, {msg: 'Card Not found'})
-                resolve({[cardId]: card})
+          // if (task !== null) {
+            task = task.toObject()
+            if (error) reject(Error('<Fn: getTask> Internal DB error'))// return cb(null, {msg: '<Fn: getTask> Internal DB error', error})
+            if (!task) reject(Error('<Fn: getTask> Task Not found'))// return cb(null, {msg: 'Task Not found'})
+            let cardsPromiseList = []
+            task.cardList.forEach(cardId => {
+              let pCard = new Promise((resolve, reject) => {
+                getCard(cardId, (card, error) => {
+                  if (error) reject(Error('<Fn: getCard> Internal DB error'))// return cb(null, {msg: '<Fn: getCard> Internal DB error', error})
+                  if (!task) reject(Error('Card Not found')) // return cb(null, {msg: 'Card Not found'})
+                  resolve({[cardId]: card})
+                })
               })
+              cardsPromiseList.push(pCard)
             })
-            cardsPromiseList.push(pCard)
-          })
-          Promise.all(cardsPromiseList).then((cards) => {
-            resolve(Object.assign(task, {'cards': cards}))
-          })
+            Promise.all(cardsPromiseList).then((cards) => {
+              resolve(Object.assign(task, {'cards': cards}))
+            })
+          // }
         })
       })
       tasksPromiseList.push(pTask)
@@ -166,6 +168,7 @@ exports.updateBoard = (boardId, boardName, cb) => {
     {$set: {boardName: boardName}},
     {safe: true, upsert: true},
     (err, board) => {
+      console.log('<trello.js, updateBoard> board = ', board)
       if (err) return cb(null, {msg: '<updateBoard> Error in updating board', err})
       cb(board, null)
     })
@@ -204,11 +207,13 @@ exports.deleteBoard = (emailId, boardId, cb) => {
 }
 
 exports.deleteTask = (boardId, taskId, cb) => {
+  console.log('<trello.js, deleteTask> boardId = ', boardId, ' taskId = ', taskId)
   Trello.Task.findByIdAndRemove({_id: taskId}, (err, obj) => {
     if (err) return cb(null, {msg: '<deleteTask> Error in deleting task', err})
-    Trello.Board.findOneAndUpdate({_id: boardId},
+    Trello.Board.findOneAndUpdate({_id: boardId}, {upsert: true, new: true},
       {$pull: {taskList: taskId}},
     (err, obj) => {
+      console.log('<trello.js, deleteTask> After findOneAndUpdate  obj = ', obj)
       if (err) return cb(null, {msg: '<deleteTask> Error in updating Board taskList', err})
       cb(obj, null)
     })

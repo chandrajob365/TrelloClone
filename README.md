@@ -1,8 +1,13 @@
 # Trello Clone
 
 #Stack Used
-- React
-- Redux
-- Node
-- Express
-- Material UI
+- Front End 
+  - React
+  - Redux
+  - React Router V4
+  - Material UI
+- Back End
+  - Node
+  - Express
+  - Axios
+  - MongoDb
